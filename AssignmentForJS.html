@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Assignment For JS </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            document.querySelector('#todo-list').onsubmit = () => {
+
+                const li = document.createElement('li');
+                li.innerHTML = document.querySelector('#task').value;
+
+                document.querySelector('#list').append(li);
+
+                document.querySelector('#task').value = '';
+
+                return false;
+            };
+            var task = document.getElementById('task'),
+                alivebtn = document.getElementById('alivebtn');
+            function IsEmpty() {
+                if (task.value) {
+                    alivebtn.removeAttribute('disabled');
+                } else {
+                    alivebtn.addAttribute('disabled', '');
+                }
+            }
+
+            task.onkeyup = IsEmpty;
+
+        });
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <h1 id="changecolor">
+        Hello! Welcome to Our PreIntern Group
+    </h1>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Choose Color
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" data-color="red" href="#">Red</a>
+            <a class="dropdown-item" data-color="black" href="#">Black</a>
+            <a class="dropdown-item" data-color="blue" href="#">Blue</a>
+            <a class="dropdown-item" data-color="green" href="#">Green</a>
+        </div>
+    </div>
+
+    <h1>To Do List</h1>
+    <ul id="list">
+    </ul>
+    <form id="todo-list">
+        <input id="task" name="input" autocomplete="off" autofocus placeholder="Add todo-task" type="text"
+            onclick="isEmpty()">
+        <input type="submit" disabled id="alivebtn">
+    </form>
+
+
+    <script>
+        function switchElemColor(e) {
+            var username = document.getElementById("changecolor");
+            var color = e.target.getAttribute("data-color");
+            username.style.color = color;
+        }
+
+        function initSwitcher() {
+            var els = document.getElementsByClassName("dropdown-item");
+            for (var i = 0; i < els.length; i++) {
+                els[i].addEventListener("click", switchElemColor, false);
+            }
+        }
+
+        initSwitcher();
+    </script>
+
+
+</body>
+
+</html>
